@@ -3,9 +3,17 @@ package Project2;
 
 
  // Utility class to calculate sums via looping. 
+/** 
+ * Utility class containing mathematical helper methods. 
+ */ 
 class MathUtility { 
 
-    public static int calculateSum(int n) { 
+	/** 
+	 * Calculates the sum of integers from 0 to n. 
+	 * @param n Upper bound of the summation. 
+	 * @return Sum of integers from 0 to n. 
+	 */ 
+	public static int calculateSum(int n) { 
 
         int sum = 0; 
 
@@ -199,9 +207,18 @@ class ThreadB extends Thread {
 
  //  Main/driver application class 
 
- 
+/** 
+ * Demonstrates thread synchronization using wait() and notifyAll() 
+ * to enforce execution dependencies between two cooperating threads. 
+ */ 
 public class ThreadSyncApp { 
-
+	
+	
+	/** 
+	 * Executes the synchronization test and verifies correctness over 
+	 * multiple iterations. 
+	 * @param args Command-line arguments. 
+	 */ 
     public static void main(String[] args) { 
 
         int iterations = 10000; 

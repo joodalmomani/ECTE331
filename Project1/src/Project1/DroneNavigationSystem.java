@@ -20,11 +20,13 @@ import java.util.Random;
 
  
 
-
-
  //this class simulates a fault-tolerant autonomous drone navigation system 
  //TMR voting used for altitude estimation  
 
+/** 
+ * Simulates a fault-tolerant autonomous drone navigation system using 
+ * Triple Modular Redundancy (TMR), reliability monitoring,exception handling and event logging. 
+ */ 
 
 public class DroneNavigationSystem { 
 
@@ -44,7 +46,13 @@ public class DroneNavigationSystem {
 
      // @param sensorId The identifier of the sensor (e.g., "A", "B", "C") ;   @return An integer representing the altitude reading ;  @throws SensorReadException if the sensor simulates a total failure (0-14 chance)
 
-
+    /** 
+     * Simulates an altitude reading from a sensor. 
+     * @param sensorId Sensor identifier (A, B or C). 
+     * @return Simulated altitude reading. 
+     * @throws SensorReadException if the sensor experiences a failure. 
+     */ 
+    
     public static int readSensor(String sensorId) throws SensorReadException { 
 
         Random random = new Random(); 
@@ -81,6 +89,11 @@ public class DroneNavigationSystem {
 
      // @param eventType The category of the event (e.g., "Majority decision") ;   @param details Specific details including outlier sensor IDs if applicable
 
+    /** 
+     * Records an event to the log file and displays it on the console. 
+     * @param eventType Type of event being logged. 
+     * @param details Detailed event description. 
+     */ 
 
     private static void logEvent(String eventType, String details) { 
 

@@ -8,6 +8,16 @@ import java.io.IOException;
 
 public class SensorReadException extends IOException { 
 
+	/** 
+
+	 * Creates a new SensorReadException. 
+
+	 * 
+
+	 * @param message Description of the sensor failure. 
+
+	 */ 
+
     public SensorReadException(String message) { 
 
         super(message); 

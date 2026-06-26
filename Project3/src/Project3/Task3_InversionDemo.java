@@ -3,7 +3,15 @@ package Project3;
 
 //TASK3: unbounded priority inversion -> a medium-priority thread delays a high-priority thread by preempting a low-priority lock holder. 
 
+/** 
+ * Demonstrates the priority inversion problem in a real-time system. 
+ */ 
 public class Task3_InversionDemo { 
+	
+	/** 
+	 * Executes the priority inversion demonstration. 
+	 * @param args Command-line arguments. 
+	 */ 
     public static void main(String[] args) throws InterruptedException { 
         System.out.println("---->Task 3: Priority Inversion "); 
 

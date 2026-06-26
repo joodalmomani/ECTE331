@@ -3,6 +3,9 @@ package Project3;
 
 //TASK4: Priority Inheritance
 
+/** 
+ * Demonstrates the priority inheritance protocol. 
+ */ 
 public class Task4_InheritanceDemo { 
 	
     // Custom lock manager to simulate  Priority Inheritance 
@@ -10,6 +13,11 @@ public class Task4_InheritanceDemo {
         private Thread currentOwner = null; 
         private int originalPriority; 
 
+        /** 
+         * Simulates priority inheritance while accessing the motor. 
+         * @param threadName Name of the requesting thread. 
+         * @param callerPriority Priority of the requesting thread. 
+         */ 
         public synchronized void accessMotor(String threadName, int callerPriority) { 
             Thread callingThread = Thread.currentThread(); 
 
@@ -59,7 +67,10 @@ public class Task4_InheritanceDemo {
     } 
 
  
-
+    /** 
+     * Executes the priority inheritance demonstration. 
+     * @param args Command-line arguments. 
+     */ 
     public static void main(String[] args) throws InterruptedException { 
         System.out.println("----> Starting Task 4: Priority Inheritance"); 
         final InheritingMotorController motor = new InheritingMotorController(); 

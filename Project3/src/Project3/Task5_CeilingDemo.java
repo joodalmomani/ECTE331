@@ -2,13 +2,19 @@ package Project3;
 
  //TASK 5: PRORITY CEILING  
 
-
+/** 
+ * Demonstrates the priority ceiling protocol. 
+ */ 
 public class Task5_CeilingDemo { 
     // Custom lock manager to have Priority Ceiling 
     static class CeilingMotorController { 
         private final int CEILING_PRIORITY = 8; // Highest priority in the system 
         private Thread currentOwner = null; 
 
+        /** 
+         * Simulates priority ceiling while accessing the motor.
+         * @param threadName Name of the requesting thread. 
+         */ 
         public synchronized void accessMotor(String threadName) { 
             Thread callingThread = Thread.currentThread(); 
             int originalPriority = callingThread.getPriority(); 
@@ -53,7 +59,10 @@ public class Task5_CeilingDemo {
     }
 
  
-
+    /** 
+     * Executes the priority ceiling demonstration. 
+     * @param args Command-line arguments. 
+     */ 
     public static void main(String[] args) throws InterruptedException { 
         System.out.println("----> Starting Task 5: Priority Ceiling"); 
         final CeilingMotorController motor = new CeilingMotorController(); 

@@ -31,6 +31,10 @@ class MathUtility {
 
 
 // Shared memory object containing variables and state flags for synchronization. 
+/** 
+ * Shared memory object containing variables and state flags  
+ * to manage thread synchronization and data passing. 
+ */ 
 
 class SharedMemory { 
 
@@ -53,6 +57,10 @@ class SharedMemory {
 
 
 // Thread A implementation 
+/** 
+ * Represents Thread A, executing FuncA1, FuncA2, and FuncA3  
+ * in strict synchronization with Thread B. 
+ */ 
 
 class ThreadA extends Thread { 
 
@@ -125,7 +133,11 @@ class ThreadA extends Thread {
 
  
 
-//Thread B implementation 
+//Thread B implementation
+/** 
+ * Represents Thread B, executing FuncB1, FuncB2, and FuncB3  
+ * in strict synchronization with Thread A.
+ */ 
 
 class ThreadB extends Thread { 
 

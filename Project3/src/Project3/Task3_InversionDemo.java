@@ -7,23 +7,42 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; 
 
  
-/** * Demonstrates the baseline priority inversion protocol.  
-
- */  
+/** 
+ * Demonstrates the baseline priority inversion protocol within a real-time system. 
+ * This simulation illustrates a scenario where a high-priority thread is indefinitely 
+ * blocked by a lower-priority thread due to a medium-priority thread preempting 
+ * the CPU, effectively highlighting the necessity for strict real-time scheduling. 
+ */ 
 
 public class Task3_InversionDemo {  
-
+	
+	/** 
+     * Generates a formatted timestamp for precise synchronization event logging. 
+     * @return A String representing the current system time in HH:mm:ss.SSS format. 
+     */ 
     private static String getTime() { 
 
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS")); 
 
     } 
 
-     
+    
+    /** 
+         * A custom lock manager representing a mutually exclusive hardware resource. 
+         * Simulates a robotic arm motor controller susceptible to priority inversion. 
+         */ 
     static class MotorController {  
 
+    	/** Tracks the thread currently holding the hardware lock. */ 
         private Thread currentOwner = null;  
 
+        /** 
+         * Attempts to acquire the mutually exclusive hardware lock. 
+         * If the resource is currently held, the requesting thread is suspended 
+         * using a passive wait state until the lock is released. 
+         * 
+         * @param threadName The descriptive name of the thread requesting access. 
+         */ 
         public void accessMotor(String threadName) {  
 
             Thread callingThread = Thread.currentThread();  
@@ -63,7 +82,15 @@ public class Task3_InversionDemo {
         }  
     }  
 
-
+    
+    /** 
+     * The main execution method. initiates the creation and staggering 
+     * of the Logger, Safety Monitor, and Motion Planner threads to force 
+     * a priority inversion scenario. 
+     * 
+     * @param args Command-line arguments (unused). 
+     * @throws InterruptedException if the main thread is interrupted while waiting for thread joins. 
+     */ 
     public static void main(String[] args) throws InterruptedException {  
         System.out.println("[" + getTime() + "] ----> Starting Task 3: Priority Inversion");  
         final MotorController motor = new MotorController();  

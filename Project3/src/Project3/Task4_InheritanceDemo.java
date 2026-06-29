@@ -6,21 +6,43 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; 
 
 
-/** * Demonstrates the priority inheritance protocol.  
 
- */  
+
+/** 
+* Demonstrates the priority inheritance protocol within a real-time system. 
+* This simulation dynamically elevates the priority of a low-priority thread 
+* when a high-priority thread blocks on a resource it holds, preventing 
+* medium-priority threads from preempting the lock holder. 
+*/  
 
 public class Task4_InheritanceDemo {  
 	
+	/** 
+     * Generates a formatted timestamp for precise synchronization event logging.
+     * @return A String representing the current system time in HH:mm:ss.SSS format. 
+     */
     private static String getTime() { 
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS")); 
     } 
 
-     
+    /** 
+     * A custom lock manager representing a mutually exclusive hardware resource. 
+     * Implements priority inheritance to prevent unbounded priority inversion. 
+     */ 
+/** Stores the original priority of the thread before any inheritance elevation. */ 
     static class InheritingMotorController {  
-        private Thread currentOwner = null;  
+    	/** Tracks the thread currently holding the hardware lock. */ 
+        private Thread currentOwner = null; 
+        /** Stores the original priority of the thread before any inheritance elevation. */ 
         private int originalPriority;  
 
+        /** 
+         * Attempts to acquire the mutually exclusive hardware lock. 
+         * If the resource is held by a lower-priority thread, it elevates the owner's 
+         * priority to match the caller's priority (Priority Inheritance) before waiting. 
+         * @param threadName The descriptive name of the thread requesting access. 
+         * @param callerPriority The real-time priority level of the requesting thread. 
+         */ 
         public void accessMotor(String threadName, int callerPriority) {  
             Thread callingThread = Thread.currentThread();  
 
@@ -72,6 +94,13 @@ public class Task4_InheritanceDemo {
 
  
 
+    /** 
+     * The main execution method. initiates the creation and staggering 
+     * of the Logger, Safety Monitor, and Motion Planner threads to trigger 
+     * and resolve a priority inversion scenario using inheritance.
+     * @param args Command-line arguments (unused). 
+     * @throws InterruptedException if the main thread is interrupted while waiting for thread joins. 
+     */ 
     public static void main(String[] args) throws InterruptedException {  
         System.out.println("[" + getTime() + "] ----> Starting Task 4: Priority Inheritance");  
         final InheritingMotorController motor = new InheritingMotorController();  
